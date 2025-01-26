@@ -1,0 +1,18 @@
+/* same for all page */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: #1e1e1e; 
+}
+
+
+.site-content {
+  margin: 100px auto;
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+  color: #cccccc;
+}

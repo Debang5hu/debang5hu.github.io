@@ -1,0 +1,177 @@
+<!-- structure -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Debang5hu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .left-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2e2e2e;
+            padding: 25px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #1e90ff; 
+        }
+
+        .profile-link {
+            text-decoration: none;
+        }
+
+        .top-links {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }       
+
+        .top-links a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: transparent;
+        }
+
+        .top-links a:hover {
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.5), rgba(30, 144, 255, 0.2));
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #1e90ff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.5), rgba(30, 144, 255, 0.2));
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+            color: #1e90ff;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .top-links {
+                flex-wrap: nowrap; 
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .top-links a {
+                flex-shrink: 0;
+            }
+
+            .left-sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+                justify-content: center;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+                border: 2px solid #1e90ff;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-links {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .top-links a {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+                flex-shrink: 0; 
+            }
+
+            .social-links a {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="left-sidebar">
+        <a href="/" class="profile-link">
+            <!-- https://github.com/user-attachments/assets/c4c6be41-552c-4eef-8794-da7e91a46c5c -->
+            <img class="profile-img" src="/pfp.jpg" alt="Profile Picture"/>
+        </a>
+        <nav class="top-links">
+            <a href="https://github.com/user-attachments/files/18529801/resume.pdf">Resume</a>
+            <a href="/project.html">Projects</a>
+            <a href="/blog.html">Blogs</a>
+        </nav>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/debangshu-roy" class="fa fa-linkedin" target="_blank" title="Linkedin"></a>
+            <a href="https://github.com/Debang5hu" target="_blank" title="Github">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                </svg>
+            </a>
+            <a href="https://x.com/debang5hu" target="_blank" title="Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15" />
+                </svg>
+            </a>
+            <a href="https://discord.com/users/718847515176206406" target="_blank" title="Discord">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
+                    <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.3 13.3 0 0 0 3.995-2.02.049.049 0 0 0 .021-.037c.334-3.334-.59-6.324-.908-9.125A.034.034 0 0 0 13.545 2.907ZM5.78 10.455c-.789 0-1.438-.73-1.438-1.628s.637-1.629 1.438-1.629 1.438.73 1.438 1.629S6.568 10.455 5.779 10.455ZM10.221 10.455c-.788 0-1.438-.73-1.438-1.628s.637-1.629 1.438-1.629 1.438.73 1.438 1.629-.65 1.628-1.438 1.628Z" />
+                </svg>
+            </a>
+        </div>
+    </aside>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Debang5hu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      main.site-content {
+          margin: 50px auto;
+          max-width: 800px;
+          padding: 20px;
+          color: #e0e0e0; 
+          text-align: justify; 
+          line-height: 1.8;
+      }
+
+      h1 {
+          color: #1e90ff;
+          font-size: 2.5rem;
+          margin-bottom: 20px;
+          text-align: center;
+      }
+
+      p {
+          font-size: 1.1rem;
+          margin-bottom: 20px;
+      }
+
+      p a {
+          color: #61dafb;
+          text-decoration: none;
+      }
+
+    </style>
+</head>
+<body>
+    <!-- structure -->
+    <div id="sidebar-container"></div>
+
+    <main class="site-content">
+        <h1>Hello World</h1>
+        <p>I am Debangshu, a skiddie currently pursuing a B.Tech in Computer Science and Engineering. I have a strong interest in penetration testing, solving CTF challenges, and studying Malware Development. My goal is to make meaningful contributions to the field of cybersecurity while continually learning and improving my skills.</p>
+        <img src="https://www.hackthebox.com/badge/image/1577287" alt="HackTheBox"> 
+        <p style="text-align: center;">(๑>◡<๑)</p>
+        <p>さよなら</p>
+    </main>
+
+    <script>
+        fetch('sidebar.html')
+          .then(response => response.text())
+          .then(html => {
+            document.querySelector('#sidebar-container').innerHTML = html;
+          })
+          .catch(error => {
+            console.error('Error loading sidebar:', error);
+          });
+      </script>
+</body>
+</html>

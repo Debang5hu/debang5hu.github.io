@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Debang5hu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- structure -->
+    <div id="sidebar-container"></div>
+
+
+    <main class="site-content">
+      <marquee>To Do</marquee>
+    </main>
+
+
+
+    
+    <script>
+        fetch('sidebar.html')
+          .then(response => response.text())
+          .then(html => {
+            document.querySelector('#sidebar-container').innerHTML = html;
+          })
+          .catch(error => {
+            console.error('Error loading sidebar:', error);
+          });
+      </script>
+</body>
