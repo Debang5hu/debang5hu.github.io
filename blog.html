@@ -1,23 +1,58 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Debang5hu</title>
+    <title>debang5hu</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+        h3 {
+            color: #1e90ff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: circle;
+            padding-left: 40px;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+        }
+
+        ul li a {
+            font-size: 1.2rem;
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: #61dafb;
+            text-shadow: 0 0 8px #61dafb, 0 0 15px #61dafb;
+        }
+    </style>
 </head>
 <body>
     <!-- structure -->
     <div id="sidebar-container"></div>
 
-
     <main class="site-content">
-      <marquee>To Do</marquee>
+        <ul>
+            <li>
+                <a href="https://medium.com/@debang5hu/discovering-and-reporting-a-reflective-xss-vulnerability-8c5e14206d17" target="_blank">
+                    Discovering and Reporting a Reflective XSS Vulnerability
+                </a>
+            </li>
+        </ul>
     </main>
 
-
-
-    
     <script>
         fetch('sidebar.html')
           .then(response => response.text())
@@ -27,5 +62,6 @@
           .catch(error => {
             console.error('Error loading sidebar:', error);
           });
-      </script>
+    </script>
 </body>
+</html>
