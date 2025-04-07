@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: FLAG{L0L_U_Found_Mee!}
+Disallow: TDBMX1VfRm91bmRfTWVlIQ==
