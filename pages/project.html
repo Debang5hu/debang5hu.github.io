@@ -4,7 +4,8 @@
     <title>debang5hu</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/styles.css" />
 
     <style>
       h3 {
@@ -64,7 +65,7 @@
 
     
     <script>
-        fetch('sidebar.html')
+        fetch('../components/sidebar.html')
           .then(response => response.text())
           .then(html => {
             document.querySelector('#sidebar-container').innerHTML = html;

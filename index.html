@@ -4,7 +4,8 @@
     <title>debang5hu</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
       main.site-content {
           margin: 50px auto;
@@ -23,7 +24,7 @@
       }
 
       p {
-          font-size: 1.1rem;
+          font-size: 1rem;
           margin-bottom: 20px;
       }
 
@@ -40,13 +41,13 @@
 
     <main class="site-content">
         <h1>Hello World</h1>
-        <p>I am Debangshu, a skiddie currently pursuing a B.Tech in Computer Science and Engineering. I have a strong interest in penetration testing, solving CTF challenges, and studying Malware Development. My goal is to make meaningful contributions to the field of cybersecurity while continually learning and improving my skills.</p>
+        <p>I am debangshu, a skiddie currently pursuing a bachelors in cse. I have a strong interest in penetration testing, solving CTFs, and a noob bug hunter. Just trying to keep learning and hopefully contribute something useful to the internet.</p>
         <img src="https://www.hackthebox.com/badge/image/1577287" alt="HackTheBox"> 
         <p>さよなら</p>
     </main>
 
     <script>
-        fetch('sidebar.html')
+        fetch('components/sidebar.html')
           .then(response => response.text())
           .then(html => {
             document.querySelector('#sidebar-container').innerHTML = html;

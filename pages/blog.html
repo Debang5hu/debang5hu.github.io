@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>debang5hu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <style>
+
+        .entry-list {
+            list-style-type: none;
+            padding-left: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            padding: 0 20px;
+        }
+
+        .entry a {
+            font-weight: bold;
+            color: #1e90ff;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .entry a:hover {
+            color: #61dafb;
+            text-shadow: 0 0 8px #61dafb, 0 0 15px #61dafb;
+        }
+
+        .entry .date {
+            color: #888;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+
+
+
+        h4 {
+            color: #fdfdfd;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-align: left;
+            padding-left: 40px;
+        }
+
+        .category {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        h3 {
+            color: #1e90ff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: circle;
+            padding-left: 40px;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+        }
+
+        ul li a {
+            font-size: 1rem;
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: #61dafb;
+            text-shadow: 0 0 8px #61dafb, 0 0 15px #61dafb;
+        }
+    </style>
+</head>
+<body>
+    <!-- structure -->
+    <div id="sidebar-container"></div>
+
+    <main class="site-content">
+        <section class="category">
+            <ul class="entry-list">
+                <li class="entry">
+                    <a href="https://medium.com/@debang5hu/discovering-and-reporting-a-reflective-xss-vulnerability-8c5e14206d17" target="_blank">
+                        Discovering a Reflective XSS Vulnerability
+                    </a>
+                    <span class="date">Feb 4, 2025</span>
+                </li>
+                <li class="entry">
+                    <a href="https://github.com/Debang5hu/ctf-writeups/blob/main/writeups/timeb0mb.md" target="_blank">
+                        timeb0mb CTF Writeup
+                    </a>
+                    <span class="date">Apr 20, 2025</span>
+                </li>
+                <li class="entry">
+                <a href="https://medium.com/@debang5hu/titanic-write-up-hackthebox-season-7-7b882d688e07" target="_blank">
+                        Titanic Writeup | HTB | Season 7
+                    </a>
+                    <span class="date">Apr 22, 2025</span>
+                </li>
+                <li class="entry">
+                    <a href="https://github.com/Debang5hu/ctf-writeups/blob/main/writeups/oh_my_posh.md" target="_blank">
+                        Beautify Terminal with Oh My Posh
+                    </a>
+                    <span class="date">May 30, 2025</span>
+                </li>
+            </ul>
+    </section>
+    </main>
+
+    <footer style="color: #999; font-size: 0.85rem; text-align: center; padding: 20px 0;">
+        PS: will try to update it regularly
+    </footer>
+
+    <script>
+        fetch('../components/sidebar.html')
+          .then(response => response.text())
+          .then(html => {
+            document.querySelector('#sidebar-container').innerHTML = html;
+          })
+          .catch(error => {
+            console.error('Error loading sidebar:', error);
+          });
+    </script>
+</body>
+</html>
