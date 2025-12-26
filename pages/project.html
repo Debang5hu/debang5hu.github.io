@@ -1,94 +1,242 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>debang5hu</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+  <title>debang5hu | Projects</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script src="/assets/js/sidebar.js" defer></script>
 
-    <style>
-      h3 {
-          color: #1e90ff;
-          font-size: 1.3rem;
-          margin: 20px auto 5px;
-          padding: 0 15px;
-          max-width: 700px;
-          text-align: left;
-      }
+  <style>
+  /* ===== Layout (same as Blog) ===== */
 
-      ul {
-          list-style-type: circle;
-          text-align: left;
-          margin: 20px auto;
-          max-width: 700px;
-          padding: 0 15px 0 35px;
-      }
+  body {
+    margin: 0;
+    background: #0f0f0f;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding-left: 300px;
+  }
 
-      ul li {
-          margin-bottom: 10px;
-          line-height: 1.6;
-      }
+  .site-content {
+    margin-left: 300px;
+    min-height: 100vh;
+    padding: 80px 20px 60px;
+  }
 
-      ul li a {
-          color: #ffcc00;
-          text-decoration: none;
-      }
+  .projects-scroll {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-      ul li a:hover {
-        color: #ffcc00;
-        text-shadow: 0 0 8px #61dafb, 0 0 15px #61dafb;
-        transition: all 0.3s ease;
-      }
+  /* ===== Project Card ===== */
 
-    </style>
+  .project-card {
+    position: relative;
+    height: 180px;
+    margin-bottom: 25px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
 
+    /* subtle default depth */
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ===== Overlay (FIXED UX) ===== */
+  .project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    /* darker by default */
+    background: rgba(0, 0, 0, 0.65);
+    transition: background 0.25s ease;
+    pointer-events: none;
+  }
+
+  /* small hover change instead of dramatic */
+  .project-card:hover::before {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* ===== Bottom Content ===== */
+
+  .project-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    padding: 16px 20px;
+    text-align: left;
+
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.15)
+    );
+
+    transition: background 0.25s ease;
+  }
+
+  .project-card:hover .project-bottom {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.25)
+    );
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #1e90ff;
+    margin-bottom: 4px;
+  }
+
+  /* ===== Description Reveal ===== */
+
+  .project-desc {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .project-card:hover .project-desc {
+    max-height: 130px;
+  }
+
+  /* Inline links */
+  .project-desc a {
+    position: relative;
+    z-index: 5;
+    color: #61dafb;
+    text-decoration: none;
+  }
+
+  .project-desc a:hover {
+    text-shadow: 0 0 6px rgba(97, 218, 251, 0.7);
+  }
+
+  /* Full-card click layer */
+  .project-card > a.card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    text-indent: -9999px;
+  }
+
+  /* Disable hover lift when hovering inline links */
+  .project-card:has(.project-desc a:hover) {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 768px) {
+    body {
+      padding-left: 0;
+    }
+
+    .site-content {
+      margin-left: 0;
+      padding: 20px 15px 60px;
+    }
+
+    .project-card {
+      height: 160px;
+    }
+
+    .project-title {
+      font-size: 1rem;
+    }
+  }
+</style>
 </head>
+
 <body>
-    <!-- structure -->
-    <div id="sidebar-container"></div>
 
+  <!-- Sidebar -->
+  <div id="sidebar-container"></div>
 
-    <main class="site-content">
+  <main class="site-content">
+    <section class="projects-scroll">
 
-      <h3>VulnTour</h3>
-      <ul>
-        <li>A lightweight <a href="https://github.com/Debang5hu/VulnTour">Single-Page Application</a> (SPA) for security testers</li>
-        <li>Built with modern technologies like Node, Express, SQLite and supports containerization</li>
-        <li>Language Used: Javascript</li>
-      </ul>
+      <!-- VulnTour -->
+      <div class="project-card"
+           style="background-image: url('/assets/images/project/vulntour.jpg');">
+        <a class="card-link" href="https://github.com/Debang5hu/VulnTour" target="_blank">Open</a>
+        <div class="project-bottom">
+          <div class="project-title">VulnTour</div>
+          <div class="project-desc">
+            VulnTour is a lightweight Single-Page Application (SPA) designed for security testers.
+            Built using Node.js, Express, and SQLite, with containerization support to streamline
+            testing and deployment workflows.
+          </div>
+        </div>
+      </div>
 
-      <h3>Wushi</h3>
-      <ul>
-        <li>A high-interaction <a href="https://github.com/Debang5hu/wushi">honeypot</a> that focus on ssh and https</li>
-        <li>It contains a set of honeypot services designed to simulate vulnerable systems and capture attempted attacks</li>
-        <li>Languages Used: Python and Golang</li>
-      </ul>
+      <!-- Wushi -->
+      <div class="project-card"
+           style="background-image: url('/assets/images/project/wushi.jpg');">
+        <a class="card-link" href="https://github.com/Debang5hu/wushi" target="_blank">Open</a>
+        <div class="project-bottom">
+          <div class="project-title">Wushi</div>
+          <div class="project-desc">
+            Wushi is a high-interaction honeypot focused on SSH and HTTPS services, simulating
+            vulnerable systems to capture real-world attack behavior for analysis.
+          </div>
+        </div>
+      </div>
 
-      <h3>100-redteam-projects</h3>
-      <ul>
-        <li>2 PRs got merged: <a href="https://github.com/kurogai/100-redteam-projects/pull/44">#44</a> and <a href="https://github.com/kurogai/100-redteam-projects/pull/46">#46</a> </li>
-      </ul>
+      <!-- 100 Red Team Projects -->
+      <div class="project-card"
+           style="background-image: url('/assets/images/project/100.jpg');">
+        <a class="card-link"
+           href="https://github.com/kurogai/100-redteam-projects"
+           target="_blank">Open</a>
+        <div class="project-bottom">
+          <div class="project-title">100-redteam-projects</div>
+          <div class="project-desc">
+            Contributor to the 100 Red Team Projects repository with two merged pull requests
+            (
+            <a href="https://github.com/kurogai/100-redteam-projects/pull/44"
+               target="_blank" onclick="event.stopPropagation()">#44</a>,
+            <a href="https://github.com/kurogai/100-redteam-projects/pull/46"
+               target="_blank" onclick="event.stopPropagation()">#46</a>
+            ), improving offensive security learning resources.
+          </div>
+        </div>
+      </div>
 
-      <h3>Keylogger</h3>
-      <ul>
-        <li>A simple <a href="https://github.com/Debang5hu/keylogger">keylogger</a> made in python that send the keystrokes to the attacker via telegram</li>
-        <li>It capture the Keylogs, store it locally and periodically upload the file to the Server</li>
-        <li>Language Used: Python</li>
-      </ul> 
+      <!-- Keylogger -->
+      <div class="project-card"
+           style="background-image: url('/assets/images/project/keylogger.jpg');">
+        <a class="card-link" href="https://github.com/Debang5hu/keylogger" target="_blank">Open</a>
+        <div class="project-bottom">
+          <div class="project-title">Keylogger</div>
+          <div class="project-desc">
+            A simple Python keylogger that captures keystrokes, stores logs locally,
+            and periodically uploads them to a remote server, demonstrating persistence
+            and data-capture concepts.
+          </div>
+        </div>
+      </div>
 
-
-    </main>
-
-    
-    <script>
-        fetch('../components/sidebar.html')
-          .then(response => response.text())
-          .then(html => {
-            document.querySelector('#sidebar-container').innerHTML = html;
-          })
-          .catch(error => {
-            console.error('Error loading sidebar:', error);
-          });
-      </script>
+    </section>
+  </main>
 </body>
+</html>

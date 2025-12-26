@@ -8,11 +8,23 @@ body {
   background-color: #1e1e1e; 
 }
 
-
 .site-content {
   margin: 100px auto;
   max-width: 800px;
   padding: 20px;
   text-align: center;
   color: #cccccc;
+}
+
+.blog .entry-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.site-footer {
+  color: #999;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 20px 0;
 }

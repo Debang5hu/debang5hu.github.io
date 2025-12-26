@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="/assets/js/sidebar.js" defer></script>
     <style>
       main.site-content {
           margin: 50px auto;
@@ -46,16 +47,10 @@
         Just trying to keep learning and hopefully contribute anything useful to the internet.</p> 
         <p>さよなら</p>
     </main>
-
-    <script>
-        fetch('components/sidebar.html')
-          .then(response => response.text())
-          .then(html => {
-            document.querySelector('#sidebar-container').innerHTML = html;
-          })
-          .catch(error => {
-            console.error('Error loading sidebar:', error);
-          });
-      </script>
 </body>
 </html>
+
+
+
+
+<!-- to add montage in bg -->
