@@ -11,160 +11,159 @@
   <style>
   /* ===== Layout (same as Blog) ===== */
 
-  body {
-    margin: 0;
-    background: #0f0f0f;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    padding-left: 300px;
-  }
+      body {
+        margin: 0;
+        background: #0f0f0f;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        padding-left: 300px;
+      }
 
-  .site-content {
-    margin-left: 300px;
-    min-height: 100vh;
-    padding: 80px 20px 60px;
-  }
+      .site-content {
+        min-height: 100vh;
+        padding: 0 20px 60px;
+      }
 
-  .projects-scroll {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+      .projects-scroll {
+        max-width: 900px;
+        margin: 0 auto;
+      }
 
-  /* ===== Project Card ===== */
+      /* ===== Project Card ===== */
 
-  .project-card {
-    position: relative;
-    height: 180px;
-    margin-bottom: 25px;
-    border-radius: 14px;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
+      .project-card {
+        position: relative;
+        height: 180px;
+        margin-bottom: 25px;
+        border-radius: 14px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
 
-    /* subtle default depth */
-    box-shadow: 0 0 0 rgba(0,0,0,0);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+        /* subtle default depth */
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
 
-  .project-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-  }
+      .project-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      }
 
-  /* ===== Overlay (FIXED UX) ===== */
-  .project-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+      /* ===== Overlay (FIXED UX) ===== */
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
 
-    /* darker by default */
-    background: rgba(0, 0, 0, 0.65);
-    transition: background 0.25s ease;
-    pointer-events: none;
-  }
+        /* darker by default */
+        background: rgba(0, 0, 0, 0.65);
+        transition: background 0.25s ease;
+        pointer-events: none;
+      }
 
-  /* small hover change instead of dramatic */
-  .project-card:hover::before {
-    background: rgba(0, 0, 0, 0.8);
-  }
+      /* small hover change instead of dramatic */
+      .project-card:hover::before {
+        background: rgba(0, 0, 0, 0.8);
+      }
 
-  /* ===== Bottom Content ===== */
+      /* ===== Bottom Content ===== */
 
-  .project-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 4;
-    padding: 16px 20px;
-    text-align: left;
+      .project-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        padding: 16px 20px;
+        text-align: left;
 
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.75),
-      rgba(0, 0, 0, 0.15)
-    );
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.75),
+          rgba(0, 0, 0, 0.15)
+        );
 
-    transition: background 0.25s ease;
-  }
+        transition: background 0.25s ease;
+      }
 
-  .project-card:hover .project-bottom {
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.85),
-      rgba(0, 0, 0, 0.25)
-    );
-  }
+      .project-card:hover .project-bottom {
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.85),
+          rgba(0, 0, 0, 0.25)
+        );
+      }
 
-  .project-title {
-    font-size: 1.05rem;
-    font-weight: bold;
-    color: #1e90ff;
-    margin-bottom: 4px;
-  }
+      .project-title {
+        font-size: 1.05rem;
+        font-weight: bold;
+        color: #1e90ff;
+        margin-bottom: 4px;
+      }
 
-  /* ===== Description Reveal ===== */
+      /* ===== Description Reveal ===== */
 
-  .project-desc {
-    color: #ccc;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
+      .project-desc {
+        color: #ccc;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
 
-  .project-card:hover .project-desc {
-    max-height: 130px;
-  }
+      .project-card:hover .project-desc {
+        max-height: 130px;
+      }
 
-  /* Inline links */
-  .project-desc a {
-    position: relative;
-    z-index: 5;
-    color: #61dafb;
-    text-decoration: none;
-  }
+      /* Inline links */
+      .project-desc a {
+        position: relative;
+        z-index: 5;
+        color: #61dafb;
+        text-decoration: none;
+      }
 
-  .project-desc a:hover {
-    text-shadow: 0 0 6px rgba(97, 218, 251, 0.7);
-  }
+      .project-desc a:hover {
+        text-shadow: 0 0 6px rgba(97, 218, 251, 0.7);
+      }
 
-  /* Full-card click layer */
-  .project-card > a.card-link {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    text-indent: -9999px;
-  }
+      /* Full-card click layer */
+      .project-card > a.card-link {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        text-indent: -9999px;
+      }
 
-  /* Disable hover lift when hovering inline links */
-  .project-card:has(.project-desc a:hover) {
-    transform: none;
-    box-shadow: none;
-  }
+      /* Disable hover lift when hovering inline links */
+      .project-card:has(.project-desc a:hover) {
+        transform: none;
+        box-shadow: none;
+      }
 
-  /* ===== Mobile ===== */
-  @media (max-width: 768px) {
-    body {
-      padding-left: 0;
-    }
+      /* ===== Mobile ===== */
+      @media (max-width: 768px) {
+        body {
+          padding-left: 0;
+        }
 
-    .site-content {
-      margin-left: 0;
-      padding: 20px 15px 60px;
-    }
+        .site-content {
+          margin-left: 0;
+          padding: 20px 15px 60px;
+        }
 
-    .project-card {
-      height: 160px;
-    }
+        .project-card {
+          height: 160px;
+        }
 
-    .project-title {
-      font-size: 1rem;
-    }
-  }
-</style>
+        .project-title {
+          font-size: 1rem;
+        }
+      }
+  </style>
 </head>
 
 <body>
@@ -175,8 +174,21 @@
   <main class="site-content">
     <section class="projects-scroll">
 
-      <!-- VulnTour -->
-      <!-- under maintainance -->
+
+      <div class="project-card"
+           style="background-image: url('/assets/images/project/tripmate.png');">
+        <a class="card-link" href="https://github.com/Debang5hu/Travel-companion-finder-system" target="_blank">Open</a>
+        <div class="project-bottom">
+          <div class="project-title">Trip Mate</div>
+          <div class="project-desc">
+            A smart traveller-matching system that integrates user preferences, geolocation data, 
+            and multi-criteria ratings to identify compatible travel partners. It leverages hybrid recommendation techniques, 
+            clustering, and deep learning models to enhance matching accuracy and generate refined compatibility scores.
+          </div>
+        </div>
+      </div>
+
+      <!-- under maintainance --> 
       <div class="project-card"
            style="background-image: url('/assets/images/project/vulntour.jpg');">
         <a class="card-link" href="https://github.com/Debang5hu/VulnTour" target="_blank">Open</a>
@@ -185,7 +197,8 @@
           <div class="project-desc">
             VulnTour is a lightweight Single-Page Application (SPA) designed for security testers.
             Built using Node.js, Express, and SQLite, with containerization support to streamline
-            testing and deployment workflows.
+            testing and deployment workflows.<br>
+            [NOTE:] under maintainance
           </div>
         </div>
       </div>
@@ -203,25 +216,7 @@
         </div>
       </div>
 
-      <!-- 100 Red Team Projects -->
-      <div class="project-card"
-           style="background-image: url('/assets/images/project/100.jpg');">
-        <a class="card-link"
-           href="https://github.com/kurogai/100-redteam-projects"
-           target="_blank">Open</a>
-        <div class="project-bottom">
-          <div class="project-title">100-redteam-projects</div>
-          <div class="project-desc">
-            Contributor to the 100 Red Team Projects repository with two merged pull requests
-            (
-            <a href="https://github.com/kurogai/100-redteam-projects/pull/44"
-               target="_blank" onclick="event.stopPropagation()">#44</a>,
-            <a href="https://github.com/kurogai/100-redteam-projects/pull/46"
-               target="_blank" onclick="event.stopPropagation()">#46</a>
-            ), improving offensive security learning resources.
-          </div>
-        </div>
-      </div>
+      
 
       <!-- Keylogger -->
       <div class="project-card"
