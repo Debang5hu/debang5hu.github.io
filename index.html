@@ -1,429 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>debang5hu</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="/assets/js/sidebar.js" defer></script>
 
     <style>
-        .site-content, .video-container, .panel, .overlay, .holo-wrap, .cat, .holo-base, .holo-text {
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        body{
-            margin:0;
-            background:#0f0f0f;
-            color:#fff;
-            font-family:Arial, sans-serif;
+        body {
+            background: #0f0f0f;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
             padding-left: 300px;
-            overflow-x:hidden;
-            position:relative;
         }
 
-        .site-content{
-            position:relative;
-            min-height:100vh;
+        .site-content {
+            padding: 80px 64px;
         }
 
-        .video-container {
-            position: fixed;
-            top: 0;
-            left: 300px;
-            right: 0;
-            bottom: 0;
-            width: calc(100% - 300px);
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
+        .home-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 640px;
         }
 
-        .video-container video{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            transform:scale(1.05) translateZ(0);
-            will-change:transform;
-            backface-visibility:hidden;
-            image-rendering:auto;
-            filter:
-                brightness(0.5)
-                contrast(1.15)
-                saturate(1.2);
+        .home-comment {
+            font-size: 14px;
+            color: #58ED24;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
         }
 
-        .overlay{
-            position:absolute;
-            inset:0;
-            background:
-                rgba(0,0,0,0.45);
+        .home-title {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #d0d0d0;
+            letter-spacing: -0.01em;
+            line-height: 1;
+            margin-bottom: 12px;
+            text-shadow: 0 0 48px rgba(30, 144, 255, 0.13);
         }
 
-
-        #sidebar-container{
-            isolation: isolate;
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 2.4rem;
+            background: #1e90ff;
+            margin-left: 4px;
+            vertical-align: middle;
+            box-shadow: 0 0 8px rgba(30, 144, 255, 0.85);
+            animation: blink 1s step-end infinite;
         }
 
-
-        .panel{
-            position:fixed;
-            right:30px;
-            bottom:240px;
-            width:min(450px, calc(100vw - 60px));
-
-            background:
-                rgba(5,10,18,0.82);
-
-            border:
-                1px solid rgba(0,229,255,.18);
-
-            backdrop-filter:blur(24px);
-            -webkit-backdrop-filter:blur(24px);
-            border-radius:12px;
-            overflow:hidden;
-            z-index:50;
-            opacity:0;
-            pointer-events:none;
-            transform:
-                translateY(20px)
-                scale(.95);
-            transition:.35s ease;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
         }
 
-        .holo-wrap:hover + .panel,
-        .panel:hover{
-            opacity:1;
-            pointer-events:auto;
-            transform:
-                translateY(0)
-                scale(1);
+        .home-role {
+            font-size: 14px;
+            color: #1e90ff;
+            letter-spacing: 0.08em;
+            opacity: 0.65;
+            margin-bottom: 40px;
         }
 
-        .panel-top{
-            display:flex;
-            align-items:center;
-            padding:14px 18px;
-            border-bottom:
-                1px solid rgba(255,255,255,.05);
+        .home-bio {
+            font-size: 15px;
+            color: #5a5a5a;
+            line-height: 2.1;
+            margin-bottom: 40px;
         }
 
-        .dot{
-            width:10px;
-            height:10px;
-            border-radius:50%;
-            margin-right:6px;
+        .home-bio em {
+            color: #909090;
+            font-style: normal;
         }
 
-        .red{
-            background:#ff5f56;
+        .home-bye {
+            font-size: 15px;
+            color: #909090;
+            letter-spacing: 0.04em;
         }
 
-        .yellow{
-            background:#ffbd2e;
-        }
+        /* tablet */
+        @media (max-width: 768px) {
+            body { padding-left: 0; }
 
-        .green{
-            background:#27c93f;
-        }
+            .site-content { padding: 40px 28px 60px; }
 
-        .panel-title{
-            margin-left:10px;
-            font-size:.75rem;
-            letter-spacing:3px;
-            color:rgba(0,229,255,.5);
-            text-transform:uppercase;
-        }
-
-        .close-btn{
-            margin-left:auto;
-            cursor:pointer;
-            font-size:1.2rem;
-            opacity:.4;
-            transition:.2s;
-        }
-
-        .close-btn:hover{
-            opacity:1;
-        }
-
-        .panel-body{
-            padding:28px;
-        }
-
-        .small-title{
-            color:rgba(0,229,255,.5);
-            font-size:.7rem;
-            letter-spacing:3px;
-            text-transform:uppercase;
-        }
-
-        .panel h1{
-            margin-top:10px;
-            margin-bottom:10px;
-            line-height:1;
-            font-size:3rem;
-            color:white;
-        }
-
-        .panel h1 span{
-            color:#00e5ff;
-        }
-
-        .sub{
-            color:rgba(255,255,255,.3);
-            font-size:.8rem;
-            letter-spacing:2px;
-            margin-bottom:20px;
-            text-transform:uppercase;
-        }
-
-        .panel p{
-            color:rgba(255,255,255,.72);
-            line-height:1.9;
-            font-size:.96rem;
-        }
-
-        .tags{
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
-            margin-top:24px;
-        }
-
-        .tags span{
-            border:
-                1px solid rgba(0,229,255,.18);
-            background:
-                rgba(0,229,255,.05);
-            color:
-                rgba(0,229,255,.8);
-            padding:6px 12px;
-            border-radius:4px;
-            font-size:.7rem;
-            letter-spacing:2px;
-            text-transform:uppercase;
-        }
-
-        .bye{
-            margin-top:20px;
-            text-align:center;
-            color:rgba(0,229,255,.7);
-            font-size:1rem;
-        }
-
-        .holo-wrap{
-            position:fixed;
-            right:40px;
-            bottom:40px;
-            width:180px;
-            height:220px;
-            z-index:60;
-            cursor:pointer;
-        }
-
-        .cat{
-            position:absolute;
-            bottom:0;
-            left:50%;
-            transform:
-                translateX(-50%);
-            width:160px;
-            animation:
-                float 3s ease-in-out infinite;
-            filter:
-                drop-shadow(0 0 10px rgba(0,229,255,.7))
-                drop-shadow(0 0 30px rgba(0,229,255,.3));
-        }
-
-        @keyframes float{
-            0%,100%{
-                transform:
-                    translateX(-50%)
-                    translateY(0);
-            }
-            50%{
-                transform:
-                    translateX(-50%)
-                    translateY(-10px);
-            }
-        }
-
-        .holo-base{
-            position:absolute;
-            bottom:5px;
-            left:50%;
-            transform:translateX(-50%);
-            width:90px;
-            height:12px;
-            border-radius:50%;
-            background:
-                rgba(0,229,255,.3);
-            filter:blur(8px);
-            animation:
-                pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse{
-            0%,100%{
-                width:90px;
-                opacity:.6;
-            }
-            50%{
-                width:110px;
-                opacity:1;
-            }
-        }
-
-        .holo-text{
-            position:absolute;
-            top:-20px;
-            left:50%;
-            transform:translateX(-50%);
-            color:rgba(0,229,255,.55);
-            font-size:.7rem;
-            letter-spacing:3px;
-            text-transform:uppercase;
+            .home-title { font-size: 2.2rem; }
+            .home-role  { font-size: 12px; }
+            .home-bio   { font-size: 14px; }
+            .home-bye   { font-size: 14px; }
         }
 
         /* mobile */
+        @media (max-width: 480px) {
+            .site-content { padding: 28px 20px 56px; }
 
-        @media(max-width:768px){
-
-            body{
-                padding-left:0;
-                overflow-x:hidden;
-            }
-
-            .video-container{
-                left:0;
-                width:100%;
-            }
-
-            .video-container video{
-                width:100%;
-                height:100%;
-                object-fit:cover;
-                transform:scale(1.1);
-            }
-
-            .panel{
-                position:fixed;
-                right:12px;
-                left:12px;
-                width:auto;
-                max-width:none;
-                bottom:190px;
-            }
-
-            .panel-body{
-                padding:20px;
-            }
-
-            .panel h1{
-                font-size:2.2rem;
-                line-height:1.1;
-            }
-
-            .panel p{
-                font-size:.9rem;
-                line-height:1.7;
-            }
-
-            .holo-wrap{
-                right:10px;
-                bottom:15px;
-                width:140px;
-                height:170px;
-            }
-
-            .cat{
-                width:120px;
-            }
+            .home-title { font-size: 1.8rem; }
+            .home-bio   { font-size: 13px; line-height: 2; }
         }
     </style>
-
 </head>
-
 <body>
-
-    <!-- bg -->
-    <div class="video-container">
-
-        <video autoplay muted loop playsinline preload="auto">
-            <source src="/assets/bg.mp4" type="video/mp4">
-        </video>
-
-        <div class="overlay"></div>
-
-    </div>
-
-    <!-- SIDEBAR -->
     <div id="sidebar-container"></div>
 
-    <!-- CONTENT -->
     <div class="site-content">
-
-        <!-- CAT -->
-        <div class="holo-wrap">
-
-            <div class="holo-text">
-                >w<
-            </div>
-
-            <div class="holo-base"></div>
-
-            <img
-                src="/assets/cat.png"
-                class="cat"
-                alt="cat"
-            >
-
+        <div class="home-inner">
+            <div class="home-comment">// whoami</div>
+            <div class="home-title">dlroW olleH<span class="cursor"></span></div>
+            <div class="home-role">skiddie &nbsp;·&nbsp; pentesting &nbsp;·&nbsp; cubing</div>
+            <p class="home-bio">
+                heyo, i'm debang5hu —
+                who thinks <em>hacking labs</em> and <em>bug hunting</em> counts as “education”.<br>
+                off duty: binge-watching anime or getting third-partied in farlight 84.<br>
+                just trying to keep learning and hopefully contribute anything useful to the internet.
+            </p>
+            <div class="home-bye">さよなら</div>
         </div>
-
-        <!-- PANEL -->
-        <div class="panel" id="panel">
-
-            <div class="panel-top">
-
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-
-                <div class="panel-title">
-                    whoami
-                </div>
-
-            </div>
-
-            <div class="panel-body">
-
-                <h1>
-                    dlroW olleH
-                </h1>
-
-                <p>
-                    Hey, I’m debang5hu — a skiddie who thinks hacking labs,
-                    CTFs, and bug hunting counts as “education”. Off-duty, you’ll find me binge-watching anime
-                    or getting third-partied in Farlight 84.<br><br>
-
-                    Just trying to keep learning and hopefully
-                    contribute anything useful to the internet.
-                </p>
-
-                <p class="bye">
-                    さよなら
-                </p>
-
-            </div>
-        </div>
-
     </div>
-
 </body>
 </html>
-
-<!-- to make better montage -->

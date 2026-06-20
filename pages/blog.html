@@ -6,190 +6,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/styles.css" />
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="/assets/js/sidebar.js" defer></script>
 
     <style>
-        /* ===== Layout ===== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            margin: 0;
             background: #0f0f0f;
             color: #fff;
-            font-family: Arial, sans-serif;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
             padding-left: 300px;
         }
 
         .site-content {
-            min-height: 100vh;
-            padding: 0 20px 60px;
+            padding: 80px 64px;
         }
 
-        /* ===== Blog Container (FULL PAGE, NO SCROLL BOX) ===== */
-
-        .blog-scroll {
-            max-width: 900px;
-            margin: 0 auto;
+        .blog-inner {
+            width: 100%;
+            max-width: 680px;
         }
 
-        /* ===== Blog Card ===== */
-
-        .blog-entry {
-            position: relative;
-            height: 180px;
-            margin-bottom: 25px;
-            border-radius: 14px;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .page-label {
+            font-size: 13px;
+            color: #58ED24;
+            letter-spacing: 0.12em;
+            margin-bottom: 32px;
+            text-align: left;
         }
 
-        .blog-entry:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(97, 218, 251, 0.25);
-        }
-
-        /* Dark overlay */
-        .blog-entry::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        /* Bottom bar */
-        .blog-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 2;
+        .blog-row {
             display: flex;
+            align-items: baseline;
             justify-content: space-between;
-            align-items: center;
-            padding: 14px 20px;
-            background: linear-gradient(
-                to top,
-                rgba(0, 0, 0, 0.9),
-                rgba(0, 0, 0, 0.2)
-            );
+            gap: 24px;
+            padding: 18px 0;
+            border-bottom: 1px solid #1a1a1a;
+            text-decoration: none;
+        }
+
+        .blog-row:first-of-type {
+            border-top: 1px solid #1a1a1a;
         }
 
         .blog-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #1e90ff;
+            font-size: 15px;
+            color: #ccc;
+            letter-spacing: 0.01em;
+            transition: color 0.15s;
+            font-family: 'JetBrains Mono', monospace;
+            flex: 1;
+            min-width: 0;
+            text-align: left;
         }
 
         .blog-date {
-            font-size: 0.85rem;
-            color: #aaa;
+            font-size: 12px;
+            color: #919191;
+            letter-spacing: 0.04em;
             white-space: nowrap;
+            flex-shrink: 0;
+            transition: color 0.15s;
+            font-family: 'JetBrains Mono', monospace;
+            text-align: right;
         }
 
-        /* Make entire card clickable */
-        .blog-entry a {
-            position: absolute;
-            inset: 0;
-            z-index: 3;
-            text-indent: -9999px;
+        .blog-row:hover .blog-title {
+            color: #1e90ff;
+            text-shadow: 0 0 24px rgba(30, 144, 255, 0.3);
         }
 
-        /* ===== Mobile ===== */
+        .blog-row:hover .blog-date {
+            color: #444;
+        }
 
+        /* tablet */
         @media (max-width: 768px) {
+            body { padding-left: 0; }
 
-            body {
-                padding-left: 0;
+            .site-content { padding: 40px 28px 60px; }
+
+            .blog-title { font-size: 14px; }
+            .blog-date  { font-size: 11px; }
+        }
+
+        /* mobile */
+        @media (max-width: 480px) {
+            .site-content { padding: 28px 20px 56px; }
+
+            .blog-row {
+                flex-direction: column;
+                gap: 4px;
+                padding: 14px 0;
             }
 
-            .site-content {
-                margin-left: 0;
-                padding: 20px 15px 60px;
-            }
-
-            .blog-entry {
-                height: 160px;
-            }
-
-            .blog-title {
-                font-size: 1rem;
-            }
+            .blog-title { font-size: 13px; }
+            .blog-date  { font-size: 11px; color: #333; }
         }
     </style>
 </head>
-
-<body class="blog">
-
-    <!-- Sidebar -->
+<body>
     <div id="sidebar-container"></div>
 
-    <!-- Main content -->
     <main class="site-content">
+        <div class="blog-inner">
+            <div class="page-label">// blogs</div>
 
-        <section class="blog-scroll">
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/hackathon.png');">
-                <a href="https://medium.com/@debang5hu/breaking-it-during-a-hackathon-bb2f56da2ab7" target="_blank">Read</a>
-                <div class="blog-bottom">
+            <div class="blog-list">
+                <a class="blog-row" href="https://medium.com/@debang5hu/breaking-it-during-a-hackathon-bb2f56da2ab7" target="_blank">
                     <span class="blog-title">Breaking it during a Hackathon</span>
-                    <span class="blog-date">Apr 2, 2026</span>
-                </div>
-            </div>
-
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/fluffy.png');">
-                <a href="https://medium.com/@debang5hu/fluffy-write-up-hackthebox-season-8-294d7d301079" target="_blank">Read</a>
-                <div class="blog-bottom">
-                    <span class="blog-title">Fluffy Writeup | HTB | Season 8</span>
-                    <span class="blog-date">Aug 17, 2025</span>
-                </div>
-            </div>
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/payatu.png');">
-                <a href="https://medium.com/@debang5hu/payatu-hiring-ctf-2025-2fa2918abb64" target="_blank">Read</a>
-                <div class="blog-bottom">
+                    <span class="blog-date">apr 2026</span>
+                </a>
+                <a class="blog-row" href="https://medium.com/@debang5hu/fluffy-write-up-hackthebox-season-8-294d7d301079" target="_blank">
+                    <span class="blog-title">Fluffy Writeup · HTB Season 8</span>
+                    <span class="blog-date">aug 2025</span>
+                </a>
+                <a class="blog-row" href="https://medium.com/@debang5hu/payatu-hiring-ctf-2025-2fa2918abb64" target="_blank">
                     <span class="blog-title">Payatu Hiring CTF Writeup</span>
-                    <span class="blog-date">June 29, 2025</span>
-                </div>
-            </div>
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/terminal.png');">
-                <a href="https://github.com/Debang5hu/ctf-writeups/blob/main/writeups/oh_my_posh.md" target="_blank">Read</a>
-                <div class="blog-bottom">
+                    <span class="blog-date">jun 2025</span>
+                </a>
+                <a class="blog-row" href="https://github.com/Debang5hu/ctf-writeups/blob/main/writeups/oh_my_posh.md" target="_blank">
                     <span class="blog-title">Beautify Terminal with Oh My Posh</span>
-                    <span class="blog-date">May 30, 2025</span>
-                </div>
-            </div>
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/titanic.png');">
-                <a href="https://medium.com/@debang5hu/titanic-write-up-hackthebox-season-7-7b882d688e07" target="_blank">Read</a>
-                <div class="blog-bottom">
-                    <span class="blog-title">Titanic Writeup | HTB | Season 7</span>
-                    <span class="blog-date">Apr 22, 2025</span>
-                </div>
-            </div>
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/timebomb.png');">
-                <a href="https://github.com/Debang5hu/ctf-writeups/blob/main/writeups/timeb0mb.md" target="_blank">Read</a>
-                <div class="blog-bottom">
+                    <span class="blog-date">may 2025</span>
+                </a>
+                <a class="blog-row" href="https://medium.com/@debang5hu/titanic-write-up-hackthebox-season-7-7b882d688e07" target="_blank">
+                    <span class="blog-title">Titanic Writeup · HTB Season 7</span>
+                    <span class="blog-date">apr 2025</span>
+                </a>
+                <a class="blog-row" href="https://github.com/Debang5hu/ctf-writeups/blob/main/writeups/timeb0mb.md" target="_blank">
                     <span class="blog-title">timeb0mb CTF Writeup</span>
-                    <span class="blog-date">Apr 20, 2025</span>
-                </div>
-            </div>
-
-
-            <div class="blog-entry" style="background-image: url('/assets/images/blog/ai.png');">
-                <a href="https://medium.com/@debang5hu/discovering-and-reporting-a-reflective-xss-vulnerability-8c5e14206d17" target="_blank">Read</a>
-                <div class="blog-bottom">
+                    <span class="blog-date">apr 2025</span>
+                </a>
+                <a class="blog-row" href="https://medium.com/@debang5hu/discovering-and-reporting-a-reflective-xss-vulnerability-8c5e14206d17" target="_blank">
                     <span class="blog-title">Discovering improper input handling in blackbox</span>
-                    <span class="blog-date">Feb 4, 2025</span>
-                </div>
+                    <span class="blog-date">feb 2025</span>
+                </a>
             </div>
-
-        </section>
+        </div>
     </main>
-
 </body>
 </html>
